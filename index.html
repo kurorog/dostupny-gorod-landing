@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доступный Город — Карта доступности для каждого</title>
+    <meta name="description" content="Навигатор для людей с ограниченными возможностями и мам с колясками. Актуальные маршруты с учётом реальных барьеров.">
+    <meta name="keywords" content="доступный город, навигатор, люди с ограниченными возможностями, коляска, маломобильные, карта доступности, маршруты">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Доступный Город — Карта доступности для каждого">
+    <meta property="og:description" content="Навигатор для людей с ограниченными возможностями и мам с колясками. Город без барьеров.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Favicon & App Icon from brand-board -->
+    <link rel="icon" type="image/png" href="app-icon.svg.png">
+    <link rel="apple-touch-icon" href="app-icon.svg.png">
+    
+    <!-- Fonts: Manrope (Display) + Inter (Body) — бренд-борд -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ═══ HEADER / NAV ═══ -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="#" class="logo" aria-label="Доступный Город">
+                <img src="logo.svg.png" alt="Доступный Город" class="logo__img" width="140" height="40">
+            </a>
+            <nav class="nav" id="nav">
+                <a href="#problem" class="nav__link">Проблема</a>
+                <a href="#solution" class="nav__link">Решение</a>
+                <a href="#how" class="nav__link">Как работает</a>
+                <a href="#community" class="nav__link">Сообщество</a>
+                <a href="https://t.me/+YxXUlVFMEhljNTky" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Присоединиться</a>
+            </nav>
+            <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="hero">
+        <div class="container hero__inner">
+            <div class="hero__content">
+                <span class="badge">Для людей с ОВЗ • мам с колясками • v1.0</span>
+                <h1 class="hero__title">
+                    Город без барьеров —<br>
+                    <span class="text-accent">карта доступности</span> для каждого
+                </h1>
+                <p class="hero__subtitle">
+                    Навигатор для людей с ограниченными возможностями и мам с колясками. 
+                    Строим маршруты с учётом реальных барьеров — ступеней, бордюров и отсутствия пандусов.
+                </p>
+                <div class="hero__actions">
+                    <a href="https://t.me/+YxXUlVFMEhljNTky" class="btn btn--primary btn--lg" target="_blank" rel="noopener">Присоединиться к сообществу →</a>
+                    <a href="#solution" class="btn btn--ghost btn--lg">Узнать больше</a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="phone-frame phone-frame--hero">
+                    <img src="photo_2026-09-19_00-06-48.jpg" alt="Экран построения маршрута в приложении Доступный Город" class="phone-frame__img">
+                </div>
+            </div>
+        </div>
+        <div class="hero__wave" aria-hidden="true"></div>
+    </section>
+
+    <!-- ═══ БЛОК 1: ПРОБЛЕМА ═══ -->
+    <section class="section section--problem" id="problem">
+        <div class="container">
+            <div class="section__head">
+                <span class="section__eyebrow">01 · Проблема</span>
+                <h2 class="section__title">Передвижение по городу — <span class="text-accent">ежедневный вызов</span></h2>
+                <p class="section__lead">
+                    Люди с ограниченными возможностями, маломобильные граждане и родители с колясками каждый день сталкиваются с барьерами, о которых большинство даже не задумывается.
+                </p>
+            </div>
+            <div class="cards">
+                <article class="card card--problem">
+                    <div class="card__icon">🚧</div>
+                    <h3 class="card__title">Непредсказуемые маршруты</h3>
+                    <p class="card__text">Лестницы, высокие бордюры и брусчатка появляются на пути внезапно — информации о них нет в обычных картах.</p>
+                </article>
+                <article class="card card--problem">
+                    <div class="card__icon">🕒</div>
+                    <h3 class="card__title">Потеря времени</h3>
+                    <p class="card__text">Поиск доступного пути занимает часы. Каждая поездка превращается в квест с непредсказуемым финалом.</p>
+                </article>
+                <article class="card card--problem">
+                    <div class="card__icon">🤝</div>
+                    <h3 class="card__title">Зависимость от помощи</h3>
+                    <p class="card__text">Без точных данных человек вынужден просить о сопровождении даже для простых перемещений.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ БЛОК 2: РЕШЕНИЕ / УТП ═══ -->
+    <section class="section section--solution" id="solution">
+        <div class="container">
+            <div class="section__head">
+                <span class="section__eyebrow">02 · Наше решение</span>
+                <h2 class="section__title">Карта доступности <span class="text-accent">с живыми данными</span></h2>
+                <p class="section__lead">
+                    Мы создаём навигатор, который строит маршруты для людей с ограниченными возможностями и мам с колясками — с учётом реальных барьеров.
+                </p>
+            </div>
+
+            <!-- Реальные скриншоты приложения из макетов -->
+            <div class="screenshots">
+                <div class="screenshot">
+                    <div class="phone-frame">
+                        <img src="photo_2026-09-19_00-06-48.jpg" alt="Построение маршрута" loading="lazy">
+                    </div>
+                    <p class="screenshot__caption">Построение маршрута<br>с профилем доступности</p>
+                </div>
+                <div class="screenshot">
+                    <div class="phone-frame">
+                        <img src="photo_2026-09-19_00-06-29.jpg" alt="Результат маршрута" loading="lazy">
+                    </div>
+                    <p class="screenshot__caption">Маршрут с отметками препятствий</p>
+                </div>
+                <div class="screenshot">
+                    <div class="phone-frame">
+                        <img src="photo_2026-09-18_21-00-55.jpg" alt="Вход в приложение" loading="lazy">
+                    </div>
+                    <p class="screenshot__caption">Вход и личный кабинет</p>
+                </div>
+            </div>
+
+            <div class="usp">
+                <div class="usp__list">
+                    <div class="usp__item">
+                        <div class="usp__item-icon">✓</div>
+                        <div>
+                            <h3 class="usp__item-title">Актуальные данные</h3>
+                            <p class="usp__item-text">В отличие от конкурентов, информация о маршрутах регулярно проверяется и обновляется — вы получаете актуальные данные о барьерах.</p>
+                        </div>
+                    </div>
+                    <div class="usp__item">
+                        <div class="usp__item-icon">✓</div>
+                        <div>
+                            <h3 class="usp__item-title">Учёт типа барьеров</h3>
+                            <p class="usp__item-text">Ступени, бордюры, брусчатка, отсутствие лифтов — всё это влияет на оценку доступности маршрута.</p>
+                        </div>
+                    </div>
+                    <div class="usp__item">
+                        <div class="usp__item-icon">✓</div>
+                        <div>
+                            <h3 class="usp__item-title">Профили доступности</h3>
+                            <p class="usp__item-text">Отдельные режимы для колясочников, людей с ограниченными возможностями, пожилых и мам с детскими колясками — маршрут подстраивается под вас.</p>
+                        </div>
+                    </div>
+                    <div class="usp__item">
+                        <div class="usp__item-icon">✓</div>
+                        <div>
+                            <h3 class="usp__item-title">Оценка доступности</h3>
+                            <p class="usp__item-text">Каждый маршрут получает балл и отметки препятствий — вы сразу видите, насколько он комфортен.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ БЛОК 3: КАК РАБОТАЕТ ═══ -->
+    <section class="section section--how" id="how">
+        <div class="container">
+            <div class="section__head">
+                <span class="section__eyebrow">03 · Как это работает</span>
+                <h2 class="section__title">Три шага до <span class="text-accent">доступного маршрута</span></h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step__num">1</div>
+                    <h3 class="step__title">Введите точки А и Б</h3>
+                    <p class="step__text">Укажите адреса или выберите на карте. Мы подскажем варианты по мере ввода.</p>
+                </div>
+                <div class="step__arrow" aria-hidden="true">→</div>
+                <div class="step">
+                    <div class="step__num">2</div>
+                    <h3 class="step__title">Выберите профиль</h3>
+                    <p class="step__text">Кресло-коляска, маломобильный профиль, пожилой человек или мама с коляской — маршрут адаптируется под вас.</p>
+                </div>
+                <div class="step__arrow" aria-hidden="true">→</div>
+                <div class="step">
+                    <div class="step__num">3</div>
+                    <h3 class="step__title">Получите безопасный путь</h3>
+                    <p class="step__text">Маршрут с оценкой доступности, отмеченными барьерами и временем в пути.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ БЛОК 4: СООБЩЕСТВО / ДАННЫЕ ═══ -->
+    <section class="section section--volunteers" id="community">
+        <div class="container">
+            <div class="section__head">
+                <span class="section__eyebrow">04 · Данные и сообщество</span>
+                <h2 class="section__title">Актуальные данные — <span class="text-accent">основа безопасных маршрутов</span></h2>
+                <p class="section__lead">
+                    Информация о барьерах и доступности постоянно обновляется. Присоединяйтесь — помогите сделать город удобнее для всех.
+                </p>
+            </div>
+
+            <div class="volunteer-showcase">
+                <div class="phone-frame phone-frame--side">
+                    <img src="photo_2026-09-18_21-00-03.jpg" alt="Экран приложения — статус заявки" loading="lazy">
+                </div>
+                <div class="community-benefits">
+                    <div class="community-item">
+                        <div class="community-item__icon">📍</div>
+                        <div>
+                            <h3>Отметки на карте</h3>
+                            <p>Добавляйте и проверяйте препятствия: ступени, бордюры, отсутствие пандусов.</p>
+                        </div>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-item__icon">✅</div>
+                        <div>
+                            <h3>Верификация данных</h3>
+                            <p>Каждая отметка проходит проверку — пользователи видят только актуальную информацию.</p>
+                        </div>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-item__icon">🏙️</div>
+                        <div>
+                            <h3>Ваш город</h3>
+                            <p>Помогите улучшить доступность именно в вашем районе — данные работают сразу.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ БЛОК 5: CTA ═══ -->
+    <section class="section section--cta" id="cta">
+        <div class="container">
+            <div class="cta cta--simple">
+                <div class="cta__content">
+                    <h2 class="cta__title">Готовы сделать город доступным?</h2>
+                    <p class="cta__text">
+                        Присоединяйтесь к сообществу в Telegram — 
+                        помогайте людям с ограниченными возможностями и мамам с колясками передвигаться по городу удобнее.
+                    </p>
+                    <ul class="cta__benefits">
+                        <li>Ранний доступ к мобильному приложению</li>
+                        <li>Обсуждение маршрутов и барьеров</li>
+                        <li>Участие в улучшении родного города</li>
+                    </ul>
+                    <a href="https://t.me/+YxXUlVFMEhljNTky" class="btn btn--primary btn--lg" target="_blank" rel="noopener">
+                        Вступить в сообщество Telegram →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <img src="logo.svg.png" alt="" class="footer__logo" width="120" height="34">
+                <div>
+                    <strong>Доступный Город</strong>
+                    <p>Город без барьеров — карта доступности для каждого</p>
+                </div>
+            </div>
+            <div class="footer__links">
+                <a href="#problem">Проблема</a>
+                <a href="#solution">Решение</a>
+                <a href="#how">Как работает</a>
+                <a href="#community">Сообщество</a>
+            </div>
+            <div class="footer__contacts">
+                <a href="mailto:hello@dostupny-gorod.ru">hello@dostupny-gorod.ru</a>
+                <a href="https://t.me/+YxXUlVFMEhljNTky" target="_blank" rel="noopener">Telegram</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <p>© 2025–2026 Доступный Город. Версия 1.0 · Инклюзивный дизайн-код</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
