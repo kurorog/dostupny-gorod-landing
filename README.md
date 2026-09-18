@@ -214,7 +214,6 @@
 
 <div align="center">
 
-![Типографика](assets/brand/typography.png)
 
 </div>
 
@@ -231,7 +230,6 @@
 
 <div align="center">
 
-![Визитка](assets/brand/app-icon.png)
 
 </div>
 
@@ -241,7 +239,6 @@
 <tr>
 <td width="30%" align="center">
 
-![Иконка приложения](assets/brand/app-icon.png)
 
 </td>
 <td width="70%" valign="middle">
@@ -257,8 +254,6 @@
 #### Веб-баннер / Обложка
 
 <div align="center">
-
-![Веб-баннер](assets/brand/app-icon.png)
 
 </div>
 
