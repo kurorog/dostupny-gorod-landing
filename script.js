@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initForm();
     initReveal();
+    initCookieNotice();
 });
 
 /* ─── Header scroll effect ─── */
@@ -237,4 +238,39 @@ function initReveal() {
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     targets.forEach(el => observer.observe(el));
+}
+
+/* ─── Cookie Notice ─── */
+function initCookieNotice() {
+    const notice = document.getElementById('cookieNotice');
+    const acceptBtn = document.getElementById('cookieAccept');
+
+    if (!notice || !acceptBtn) return;
+
+    // Проверяем, принимал ли пользователь cookie ранее
+    let isAccepted = false;
+    try {
+        isAccepted = localStorage.getItem('cookie_accepted') === 'true';
+    } catch (e) {
+        console.warn('localStorage недоступен:', e);
+    }
+
+    if (!isAccepted) {
+        // Показываем плашку с небольшой задержкой для плавности
+        setTimeout(() => {
+            notice.classList.add('cookie-notice--show');
+        }, 600);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+        // Скрываем плашку
+        notice.classList.remove('cookie-notice--show');
+
+        // Запоминаем выбор пользователя
+        try {
+            localStorage.setItem('cookie_accepted', 'true');
+        } catch (e) {
+            console.warn('localStorage недоступен:', e);
+        }
+    });
 }
