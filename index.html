@@ -306,9 +306,6 @@
         </div>
     </footer>
 
-    <!-- Toast -->
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
     <!-- ═══ COOKIE NOTICE ═══ -->
     <div class="cookie-notice" id="cookieNotice" role="dialog" aria-live="polite" aria-label="Уведомление об использовании cookie">
         <div class="container cookie-notice__inner">
@@ -316,9 +313,14 @@
                 Привет! Этот сайт использует файлы cookie, чтобы сделать его удобнее для вас.
                 Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">Политике конфиденциальности</a>.
             </p>
-            <button class="btn btn--primary btn--sm cookie-notice__btn" id="cookieAccept">
-                Принять
-            </button>
+            <div class="cookie-notice__actions">
+                <button class="btn btn--ghost btn--sm cookie-notice__btn" id="cookieDecline">
+                    Отклонить
+                </button>
+                <button class="btn btn--primary btn--sm cookie-notice__btn" id="cookieAccept">
+                    Принять
+                </button>
+            </div>
         </div>
     </div>
 

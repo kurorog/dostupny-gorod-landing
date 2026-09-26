@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSmoothScroll();
     initCounters();
-    initForm();
     initReveal();
     initCookieNotice();
 });
@@ -95,127 +94,11 @@ function initCounters() {
     counters.forEach(c => observer.observe(c));
 }
 
-/* ─── Lead form ─── */
-function initForm() {
-    const form = document.getElementById('leadForm');
-    if (!form) return;
-
-    const submitBtn = document.getElementById('submitBtn');
-
-    const validators = {
-        name: (v) => {
-            if (!v.trim()) return 'Укажите имя';
-            if (v.trim().length < 2) return 'Имя слишком короткое';
-            return '';
-        },
-        email: (v) => {
-            if (!v.trim()) return 'Укажите email';
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Некорректный email';
-            return '';
-        },
-        role: (v) => (!v ? 'Выберите вариант' : ''),
-        consent: (_, el) => (!el.checked ? 'Необходимо согласие' : ''),
-    };
-
-    const showError = (name, msg) => {
-        const field = form.querySelector(`[name="${name}"]`);
-        const errorEl = form.querySelector(`[data-error-for="${name}"]`);
-        if (field) field.classList.toggle('form__input--error', !!msg);
-        if (errorEl) errorEl.textContent = msg;
-        return !msg;
-    };
-
-    // Live validation
-    ['name', 'email', 'role'].forEach(name => {
-        const field = form.querySelector(`[name="${name}"]`);
-        if (!field) return;
-        field.addEventListener('blur', () => {
-            const validator = validators[name];
-            if (validator) showError(name, validator(field.value));
-        });
-        field.addEventListener('input', () => {
-            if (field.classList.contains('form__input--error')) {
-                const validator = validators[name];
-                if (validator) showError(name, validator(field.value));
-            }
-        });
-    });
-
-    const consentField = form.querySelector('[name="consent"]');
-    if (consentField) {
-        consentField.addEventListener('change', () => {
-            if (consentField.checked) showError('consent', '');
-        });
-    }
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Validate all
-        let valid = true;
-        const data = {};
-        for (const [name, validator] of Object.entries(validators)) {
-            const field = form.querySelector(`[name="${name}"]`);
-            const value = field?.type === 'checkbox' ? field.checked : (field?.value || '');
-            const msg = validator(value, field);
-            if (!showError(name, msg)) valid = false;
-            data[name] = value;
-        }
-
-        if (!valid) {
-            showToast('Проверьте выделенные поля', 'error');
-            return;
-        }
-
-        // Submit (demo — replace with real API endpoint)
-        submitBtn.disabled = true;
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправляем…';
-
-        try {
-            // ⚠️ Замените на реальный эндпоинт API:
-            // const resp = await fetch('/v1/leads', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data),
-            // });
-            // if (!resp.ok) throw new Error('Network error');
-
-            // Демо-задержка:
-            await new Promise(r => setTimeout(r, 900));
-
-            showToast('Заявка отправлена! Мы свяжемся с вами.', 'success');
-            form.reset();
-            form.querySelectorAll('.form__error').forEach(el => el.textContent = '');
-            form.querySelectorAll('.form__input--error').forEach(el => el.classList.remove('form__input--error'));
-        } catch (err) {
-            console.error(err);
-            showToast('Ошибка отправки. Попробуйте позже.', 'error');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    });
-}
-
-/* ─── Toast ─── */
-let toastTimer;
-function showToast(message, type = 'success') {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    clearTimeout(toastTimer);
-    toast.textContent = message;
-    toast.className = `toast toast--${type} toast--show`;
-    toastTimer = setTimeout(() => {
-        toast.classList.remove('toast--show');
-    }, 4000);
-}
-
 /* ─── Reveal on scroll ─── */
 function initReveal() {
     if (!('IntersectionObserver' in window)) return;
     const targets = document.querySelectorAll(
-        '.card, .step, .usp__item, .quote, .cta__content, .form'
+        '.card, .step, .usp__item, .quote, .cta__content'
     );
     if (!targets.length) return;
 
@@ -244,33 +127,66 @@ function initReveal() {
 function initCookieNotice() {
     const notice = document.getElementById('cookieNotice');
     const acceptBtn = document.getElementById('cookieAccept');
+    const declineBtn = document.getElementById('cookieDecline');
 
-    if (!notice || !acceptBtn) return;
+    if (!notice || !acceptBtn || !declineBtn) return;
 
-    // Проверяем, принимал ли пользователь cookie ранее
-    let isAccepted = false;
+    // Проверяем, делал ли пользователь выбор ранее
+    let userChoice = null;
     try {
-        isAccepted = localStorage.getItem('cookie_accepted') === 'true';
+        userChoice = localStorage.getItem('cookie_choice'); // 'accepted' | 'declined'
     } catch (e) {
         console.warn('localStorage недоступен:', e);
     }
 
-    if (!isAccepted) {
-        // Показываем плашку с небольшой задержкой для плавности
+    // Если выбор ещё не сделан — показываем плашку
+    if (!userChoice) {
         setTimeout(() => {
             notice.classList.add('cookie-notice--show');
         }, 600);
+    } else if (userChoice === 'declined') {
+        // Если пользователь ранее отклонил — отключаем аналитику
+        disableAnalytics();
     }
 
+    // Принять
     acceptBtn.addEventListener('click', () => {
-        // Скрываем плашку
         notice.classList.remove('cookie-notice--show');
-
-        // Запоминаем выбор пользователя
         try {
-            localStorage.setItem('cookie_accepted', 'true');
+            localStorage.setItem('cookie_choice', 'accepted');
         } catch (e) {
             console.warn('localStorage недоступен:', e);
+        }
+    });
+
+    // Отклонить
+    declineBtn.addEventListener('click', () => {
+        notice.classList.remove('cookie-notice--show');
+        try {
+            localStorage.setItem('cookie_choice', 'declined');
+        } catch (e) {
+            console.warn('localStorage недоступен:', e);
+        }
+        disableAnalytics();
+    });
+}
+
+/* ─── Отключение Яндекс.Метрики ─── */
+function disableAnalytics() {
+    // Отключаем счётчик, если он уже загружен
+    if (typeof ym === 'function') {
+        try {
+            ym(112812831, 'disableAll');
+        } catch (e) {
+            console.warn('Не удалось отключить Яндекс.Метрику:', e);
+        }
+    }
+    // Удаляем cookie Метрики
+    document.cookie.split(';').forEach(cookie => {
+        const name = cookie.split('=')[0].trim();
+        if (name.startsWith('_ym')) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${location.hostname}`;
         }
     });
 }
